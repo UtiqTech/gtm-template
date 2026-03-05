@@ -3,7 +3,7 @@ documentation: "https://docs.utiq.com/docs/"
 versions:
   # Latest version
   - sha: 881b9f0278027f81423fdab30ac67f6b05b6f706
-    changeNotes: Fix Iubenda init even listener.
+    changeNotes: Fix Iubenda init event listener.
   # Previous versions
   - sha: 3606c99f23fd2b89326fe1d41bfbcecb49f4a76c
     changeNotes: Initial release.
