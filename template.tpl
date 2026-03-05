@@ -891,7 +891,14 @@ if (data.model === 'Integrated') {
 
         callLater(() => {
           callInWindow('Utiq.queue.push', function () {
-            updateCMPConsentHandling(updateConsent);
+            if (copyFromWindow('_iub.csReady')) {
+              updateCMPConsentHandling(updateConsent);                
+            } else {      
+              callInWindow(
+                '_iub.cs.on', 
+                'callback.before.onReady',
+                () => updateCMPConsentHandling(updateConsent));
+            }
           });
         }, 250);
         log('END Iubenda Agnostic');
@@ -2320,6 +2327,45 @@ ___WEB_PERMISSIONS___
                     "boolean": true
                   }
                 ]
+              },
+              {
+                "type": 3,
+                "mapKey": [
+                  {
+                    "type": 1,
+                    "string": "key"
+                  },
+                  {
+                    "type": 1,
+                    "string": "read"
+                  },
+                  {
+                    "type": 1,
+                    "string": "write"
+                  },
+                  {
+                    "type": 1,
+                    "string": "execute"
+                  }
+                ],
+                "mapValue": [
+                  {
+                    "type": 1,
+                    "string": "_iub.csReady"
+                  },
+                  {
+                    "type": 8,
+                    "boolean": true
+                  },
+                  {
+                    "type": 8,
+                    "boolean": false
+                  },
+                  {
+                    "type": 8,
+                    "boolean": false
+                  }
+                ]
               }
             ]
           }
@@ -2362,6 +2408,5 @@ scenarios: []
 
 ___NOTES___
 
-Created on 2/18/2026, 10:17:17 AM
-
+Created on 3/5/2026, 8:04:11 AM
 
